@@ -5,18 +5,24 @@
     <title></title>
 </head>
 
-<script>
-function press(){
-  var recognition = new webkitSpeechRecognition();
-  recognition.onresult = function(event) {
-    console.log(event.results[0][0].transcript)
-  }
-  recognition.start();
-}
 
-</script>
 <body>
-  <button onclick="press()" type="button">Click Me!</button>
+  <button onclick="speak()" type="button">Speak</button>
   <p id="demo"></p>
+  <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+  <button onclick="read()" type="button">Read</button>
+  <script>
+  var text;
+  function speak(){
+    var recognition = new webkitSpeechRecognition();
+    recognition.onresult = function(event) {
+        text =(event.results[0][0].transcript)
+    }
+    recognition.start();
+  }
+  function read(){
+  responsiveVoice.speak(text);
+  }
+  </script>
 </body>
 </html>
